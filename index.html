@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css" />
+<title>Temperature Converter</title>
+</head>
+<body>
+<div class="container">
+  <h1>Temperature Converter</h1>
+  <form id="converter-form">
+    <label for="input-temp">Enter Temperature:</label>
+    <input type="number" id="input-temp" placeholder="Enter temperature..." required>
+    <br/><br/><br/><br/>
+    <label for="temp-unit">Select Unit:</label>
+    <select id="temp-unit">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+    </select>
+    
+    <button type="button" onclick="convertTemperature()">Convert</button>
+  </form>
+  
+  <div id="result" style="display: none;">
+    <p id="converted-temp"></p>
+  </div>
+</div>
+
+<script>
+function convertTemperature() {
+  const inputTemp = parseFloat(document.getElementById("input-temp").value);
+  const tempUnit = document.getElementById("temp-unit").value;
+  let convertedTemp;
+  
+  if (tempUnit === "celsius") {
+    convertedTemp = (inputTemp * 9/5) + 32;
+    document.getElementById("converted-temp").textContent = `${inputTemp}°C is ${convertedTemp.toFixed(2)}°F`;
+  } else {
+    convertedTemp = (inputTemp - 32) * 5/9;
+    document.getElementById("converted-temp").textContent = `${inputTemp}°F is ${convertedTemp.toFixed(2)}°C`;
+  }
+  
+  document.getElementById("result").style.display = "block";
+}
+</script>
+</body>
+</html>
